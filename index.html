@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Happy Birthday Asma 🌸</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --rose: #f9b8c8;
+      --lavender: #c9b8f9;
+      --sky: #b8e0f9;
+      --gold: #f9dba0;
+      --peach: #f9cdb8;
+      --white: #fffafd;
+      --soft: #7a6080;
+    }
+
+    body {
+      background: #fdf0f8;
+      font-family: 'Lato', sans-serif;
+      font-weight: 300;
+      color: #5a3a5a;
+      overflow-x: hidden;
+    }
+
+    /* ---- STARFIELD ---- */
+    #stars-canvas {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ---- GLITTER PARTICLES ---- */
+    .glitter {
+      position: fixed;
+      pointer-events: none;
+      z-index: 1;
+      border-radius: 50%;
+      animation: fall linear forwards;
+    }
+    @keyframes fall {
+      0%   { transform: translateY(-20px) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(110vh) rotate(720deg); opacity: 0; }
+    }
+
+    /* ---- HERO ---- */
+    #hero {
+      position: relative;
+      z-index: 2;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 3rem 1.5rem;
+    }
+
+    .moon-ring {
+      width: 220px; height: 220px;
+      border-radius: 50%;
+      border: 3px solid var(--rose);
+      box-shadow: 0 0 40px rgba(249,184,200,0.4), 0 0 80px rgba(201,184,249,0.2);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 2rem;
+      animation: pulse 4s ease-in-out infinite;
+      background: radial-gradient(circle at 40% 40%, rgba(255,255,255,0.6), rgba(249,184,200,0.15));
+    }
+    @keyframes pulse {
+      0%, 100% { box-shadow: 0 0 40px rgba(249,184,200,0.4), 0 0 80px rgba(201,184,249,0.2); }
+      50%       { box-shadow: 0 0 60px rgba(249,184,200,0.7), 0 0 120px rgba(201,184,249,0.4); }
+    }
+
+    .hero-emoji { font-size: 5rem; }
+
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.4rem, 8vw, 4.5rem);
+      font-weight: 700;
+      background: linear-gradient(135deg, #d47fa6, #9b7fd4, #d47fa6);
+      background-size: 200%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: shimmer 4s linear infinite;
+      line-height: 1.1;
+      margin-bottom: 0.5rem;
+    }
+    @keyframes shimmer { 0%{background-position:0%} 100%{background-position:200%} }
+
+    .hero-name {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: clamp(2.8rem, 10vw, 6rem);
+      color: var(--rose);
+      text-shadow: 0 0 40px rgba(249,184,200,0.6);
+      display: block;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-msg {
+      max-width: 560px;
+      font-size: 1.1rem;
+      line-height: 1.9;
+      color: #8a5a7a;
+      margin-bottom: 2.5rem;
+    }
+
+    .scroll-hint {
+      font-size: 0.85rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #c9b8f9;
+      animation: bounce 2s ease-in-out infinite;
+    }
+    @keyframes bounce { 0%,100%{transform:translateY(0)} 50%{transform:translateY(6px)} }
+
+    /* ---- SECTION TITLES ---- */
+    .section {
+      position: relative;
+      z-index: 2;
+      padding: 4rem 1.5rem;
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.6rem, 5vw, 2.4rem);
+      text-align: center;
+      margin-bottom: 0.5rem;
+      color: #9b7fd4;
+    }
+    .section-sub {
+      text-align: center;
+      font-size: 0.95rem;
+      letter-spacing: 0.08em;
+      color: #c9a8c0;
+      margin-bottom: 2.5rem;
+    }
+
+    /* ---- ASMA PHOTOS (Carousel) ---- */
+    .carousel-wrap {
+      position: relative;
+      overflow: hidden;
+      border-radius: 24px;
+    }
+    .carousel-track {
+      display: flex;
+      transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .carousel-slide {
+      min-width: 100%;
+      position: relative;
+    }
+    .carousel-slide img {
+      width: 100%;
+      max-height: 520px;
+      object-fit: cover;
+      border-radius: 24px;
+      display: block;
+    }
+    .carousel-caption {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 1.5rem 1.5rem 1.2rem;
+      background: linear-gradient(transparent, rgba(80,30,80,0.65));
+      border-radius: 0 0 24px 24px;
+      color: white;
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 1.1rem;
+    }
+    .carousel-btn {
+      position: absolute;
+      top: 50%; transform: translateY(-50%);
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      border: none;
+      background: rgba(255,255,255,0.75);
+      cursor: pointer;
+      font-size: 1.2rem;
+      color: #9b7fd4;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.12);
+      transition: background 0.2s;
+      z-index: 5;
+    }
+    .carousel-btn:hover { background: white; }
+    .carousel-btn.prev { left: 12px; }
+    .carousel-btn.next { right: 12px; }
+
+    .dots {
+      display: flex; justify-content: center; gap: 8px;
+      margin-top: 1rem;
+    }
+    .dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: var(--lavender);
+      cursor: pointer;
+      transition: transform 0.2s, background 0.2s;
+    }
+    .dot.active { background: #9b7fd4; transform: scale(1.4); }
+
+    /* ---- DIVIDER ---- */
+    .divider {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      padding: 1rem 0;
+      font-size: 1.5rem;
+      letter-spacing: 0.5rem;
+      color: var(--rose);
+    }
+
+    /* ---- KINDNESS / DONATION SECTION ---- */
+    .kindness-intro {
+      text-align: center;
+      max-width: 640px;
+      margin: 0 auto 3rem;
+      font-size: 1.05rem;
+      line-height: 1.9;
+      color: #8a5a7a;
+    }
+    .kindness-intro strong {
+      color: #9b7fd4;
+      font-weight: 400;
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+    }
+
+    .donation-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+      gap: 1.25rem;
+    }
+    .donation-card {
+      border-radius: 20px;
+      overflow: hidden;
+      background: white;
+      box-shadow: 0 4px 24px rgba(180,130,200,0.12);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .donation-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 40px rgba(180,130,200,0.22);
+    }
+    .donation-card img {
+      width: 100%;
+      height: 210px;
+      object-fit: cover;
+      display: block;
+    }
+    .donation-card-body {
+      padding: 1rem 1.2rem 1.2rem;
+    }
+    .donation-card-body p {
+      font-size: 0.9rem;
+      color: #9a7090;
+      line-height: 1.7;
+    }
+    .donation-card-icon {
+      font-size: 1.4rem;
+      margin-bottom: 0.3rem;
+    }
+
+    /* ---- VIDEO ---- */
+    .video-wrap {
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: 0 8px 40px rgba(180,130,200,0.2);
+      background: black;
+    }
+    .video-wrap video {
+      width: 100%;
+      display: block;
+      max-height: 540px;
+      object-fit: contain;
+    }
+
+    /* ---- BIRTHDAY LETTER ---- */
+    .letter {
+      background: white;
+      border-radius: 24px;
+      padding: 3rem 2.5rem;
+      max-width: 680px;
+      margin: 0 auto;
+      box-shadow: 0 4px 40px rgba(180,130,200,0.13);
+      position: relative;
+    }
+    .letter::before {
+      content: '\201C';
+      font-family: 'Playfair Display', serif;
+      font-size: 8rem;
+      color: var(--lavender);
+      position: absolute;
+      top: -1.5rem; left: 1.5rem;
+      line-height: 1;
+    }
+    .letter p {
+      font-size: 1.05rem;
+      line-height: 2;
+      color: #7a5070;
+      margin-bottom: 1.2rem;
+    }
+    .letter p:last-child { margin-bottom: 0; }
+    .letter-sig {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 1.3rem;
+      color: #9b7fd4;
+      text-align: right;
+      margin-top: 2rem;
+    }
+
+    /* ---- FOOTER ---- */
+    footer {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      padding: 3rem 1rem 4rem;
+      font-size: 0.9rem;
+      color: #c0a0c0;
+      letter-spacing: 0.05em;
+    }
+    footer .hearts {
+      font-size: 1.5rem;
+      display: block;
+      margin-bottom: 0.5rem;
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    /* ---- FADE IN SECTIONS ---- */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+
+<canvas id="stars-canvas"></canvas>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="moon-ring">
+    <span class="hero-emoji">🌸</span>
+  </div>
+  <h1>
+    Happy Birthday
+    <span class="hero-name">Asma</span>
+  </h1>
+  <p class="hero-msg">
+    Today celebrates not just the day you were born — but the warmth, grace,
+    and kindness you bring to everyone around you. This page was made just for you,
+    with love woven into every pixel. ✨
+  </p>
+  <span class="scroll-hint">↓ scroll to see your surprise ↓</span>
+</section>
+
+<div class="divider reveal">🌙 ✦ 🌸 ✦ ⭐ ✦ 🌸 ✦ 🌙</div>
+
+<!-- ASMA'S PHOTOS -->
+<section class="section reveal">
+  <h2 class="section-title">A glimpse of you 🌸</h2>
+  <p class="section-sub">You light up every frame</p>
+
+  <div class="carousel-wrap">
+    <div class="carousel-track" id="asmaTrack">
+      <div class="carousel-slide">
+        <img src="A1.jpg" alt="Asma photo 1" />
+        <div class="carousel-caption">Radiant as always ✨</div>
+      </div>
+      <div class="carousel-slide">
+        <img src="A2.jpg" alt="Asma photo 2" />
+        <div class="carousel-caption">That smile changes rooms 🌸</div>
+      </div>
+      <div class="carousel-slide">
+        <img src="A3.jpg" alt="Asma photo 3" />
+        <div class="carousel-caption">Pure magic ⭐</div>
+      </div>
+      <div class="carousel-slide">
+        <img src="A4.jpg" alt="Asma photo 4" />
+        <div class="carousel-caption">A heart as bright as your eyes 💫</div>
+      </div>
+      <div class="carousel-slide">
+        <img src="A5.jpg" alt="Asma photo 5" />
+        <div class="carousel-caption">One of a kind 🌙</div>
+      </div>
+      <div class="carousel-slide">
+        <img src="A6.jpg" alt="Asma photo 6" />
+        <div class="carousel-caption">Happy birthday, beautiful 🎂</div>
+      </div>
+    </div>
+    <button class="carousel-btn prev" onclick="moveCarousel('asma', -1)">&#8592;</button>
+    <button class="carousel-btn next" onclick="moveCarousel('asma', 1)">&#8594;</button>
+  </div>
+  <div class="dots" id="asmaDots"></div>
+</section>
+
+<div class="divider reveal">✦ 💜 ✦ 🌟 ✦ 💜 ✦</div>
+
+<!-- KINDNESS / DONATION SECTION -->
+<section class="section reveal">
+  <h2 class="section-title">A birthday gift to the world 💜</h2>
+  <p class="section-sub">Because your heart is that big</p>
+
+  <div class="kindness-intro">
+    This year, in honour of your birthday, <strong>a donation was made to children in need</strong> —
+    because the best way to celebrate someone as <strong>beautiful inside and out</strong> as you
+    is to share that beauty with the world. Every smile in these pictures exists
+    because of your special day. 🌍✨
+  </div>
+
+  <div class="donation-grid">
+    <div class="donation-card">
+      <img src="IMG1.jpg" alt="Donation moment 1" />
+      <div class="donation-card-body">
+        <div class="donation-card-icon">🍱</div>
+        <p>Every child deserves a full belly and a bright future — this is your birthday, making that happen.</p>
+      </div>
+    </div>
+    <div class="donation-card">
+      <img src="IMG2.jpg" alt="Donation moment 2" />
+      <div class="donation-card-body">
+        <div class="donation-card-icon">🌟</div>
+        <p>These little stars shone brighter today — and it's all because of you, Asma.</p>
+      </div>
+    </div>
+    <div class="donation-card">
+      <img src="IMG3.jpg" alt="Donation moment 3" />
+      <div class="donation-card-body">
+        <div class="donation-card-icon">💜</div>
+        <p>Kindness ripples outward. What you inspired today will echo in their lives forever.</p>
+      </div>
+    </div>
+    <div class="donation-card">
+      <img src="IMG4.jpg" alt="Donation moment 4" />
+      <div class="donation-card-body">
+        <div class="donation-card-icon">🎁</div>
+        <p>A gift that doesn't unwrap — it unfolds over a lifetime, quietly changing everything.</p>
+      </div>
+    </div>
+    <div class="donation-card">
+      <img src="IMG5.jpg" alt="Donation moment 5" />
+      <div class="donation-card-body">
+        <div class="donation-card-icon">☀️</div>
+        <p>You didn't just turn a year older — you made the world a little warmer today.</p>
+      </div>
+    </div>
+    <div class="donation-card">
+      <img src="IMG6.jpg" alt="Donation moment 6" />
+      <div class="donation-card-body">
+        <div class="donation-card-icon">🌸</div>
+        <p>This is what celebrating you looks like — love, multiplied.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider reveal">🌸 ✦ 🌙 ✦ ⭐ ✦ 🌙 ✦ 🌸</div>
+
+<!-- VIDEO -->
+<section class="section reveal">
+  <h2 class="section-title">A moment in time 🎬</h2>
+  <p class="section-sub">From the heart, for yours</p>
+  <div class="video-wrap">
+    <video controls preload="metadata" poster="A1.jpg">
+      <source src="VID.mp4" type="video/mp4" />
+      Your browser does not support the video tag.
+    </video>
+  </div>
+</section>
+
+<div class="divider reveal">✦ 💜 ✦ 🌟 ✦ 💜 ✦</div>
+
+<!-- BIRTHDAY LETTER -->
+<section class="section reveal">
+  <h2 class="section-title">A little note for you 🌙</h2>
+  <p class="section-sub">From someone who's grateful you exist</p>
+
+  <div class="letter">
+    <p>
+      Dear Asma, on the day you came into this world, it quietly became a kinder place.
+      And today, we're celebrating that — not just with words, but with actions,
+      because you deserve a birthday that means something beyond just candles and cake.
+    </p>
+    <p>
+      So this year, your birthday reached children who needed it most. Their laughter,
+      their full hearts, their little moments of joy — those are your birthday gifts
+      to the universe. And the universe, I'm sure, smiles back at you.
+    </p>
+    <p>
+      May this year bring you everything you quietly deserve — peace, love, magic in
+      the ordinary, and the certainty that you are so deeply, irreplaceably valued.
+      You are someone rare. Never forget that. 🌸
+    </p>
+    <div class="letter-sig">With all the stars in the sky — Happy Birthday 💜</div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span class="hearts">🌸 💜 ⭐ 💜 🌸</span>
+  Made with love, just for Asma — may every wish come true ✨
+</footer>
+
+<script>
+  /* ---- STARFIELD ---- */
+  const canvas = document.getElementById('stars-canvas');
+  const ctx = canvas.getContext('2d');
+  let stars = [];
+
+  function resizeCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+
+  function initStars() {
+    stars = [];
+    for (let i = 0; i < 160; i++) {
+      stars.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        r: Math.random() * 1.5 + 0.3,
+        alpha: Math.random(),
+        speed: Math.random() * 0.008 + 0.003,
+        colors: ['#f9b8c8','#c9b8f9','#b8e0f9','#f9dba0','#ffffff']
+      });
+    }
+  }
+
+  function drawStars() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    stars.forEach(s => {
+      s.alpha += s.speed;
+      if (s.alpha > 1) { s.alpha = 0; s.x = Math.random() * canvas.width; s.y = Math.random() * canvas.height; }
+      const color = s.colors[Math.floor(s.alpha * s.colors.length) % s.colors.length];
+      ctx.beginPath();
+      ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+      ctx.fillStyle = color;
+      ctx.globalAlpha = Math.sin(s.alpha * Math.PI);
+      ctx.fill();
+    });
+    ctx.globalAlpha = 1;
+    requestAnimationFrame(drawStars);
+  }
+
+  resizeCanvas(); initStars(); drawStars();
+  window.addEventListener('resize', () => { resizeCanvas(); initStars(); });
+
+  /* ---- GLITTER RAIN ---- */
+  const glitterColors = ['#f9b8c8','#c9b8f9','#f9dba0','#b8f9e0','#b8d8f9'];
+  function spawnGlitter() {
+    const el = document.createElement('div');
+    el.className = 'glitter';
+    const size = Math.random() * 6 + 3;
+    el.style.cssText = `
+      left:${Math.random()*100}vw;
+      width:${size}px;
+      height:${size}px;
+      background:${glitterColors[Math.floor(Math.random()*glitterColors.length)]};
+      animation-duration:${Math.random()*4+3}s;
+      opacity:${Math.random()*0.7+0.3};
+    `;
+    document.body.appendChild(el);
+    el.addEventListener('animationend', () => el.remove());
+  }
+  setInterval(spawnGlitter, 200);
+
+  /* ---- CAROUSEL ---- */
+  const carousels = {
+    asma: { index: 0, total: 6, track: document.getElementById('asmaTrack'), dotsEl: document.getElementById('asmaDots') }
+  };
+
+  function buildDots(key) {
+    const c = carousels[key];
+    for (let i = 0; i < c.total; i++) {
+      const d = document.createElement('div');
+      d.className = 'dot' + (i === 0 ? ' active' : '');
+      d.onclick = () => goTo(key, i);
+      c.dotsEl.appendChild(d);
+    }
+  }
+
+  function goTo(key, i) {
+    const c = carousels[key];
+    c.index = (i + c.total) % c.total;
+    c.track.style.transform = `translateX(-${c.index * 100}%)`;
+    c.dotsEl.querySelectorAll('.dot').forEach((d, j) => d.classList.toggle('active', j === c.index));
+  }
+
+  function moveCarousel(key, dir) {
+    goTo(key, carousels[key].index + dir);
+  }
+
+  buildDots('asma');
+
+  /* Auto-advance carousel */
+  setInterval(() => moveCarousel('asma', 1), 4000);
+
+  /* ---- SCROLL REVEAL ---- */
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
