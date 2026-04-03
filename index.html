@@ -318,6 +318,34 @@
       margin-top: 2rem;
     }
 
+    /* ---- FRIENDSHIP SECTION ---- */
+    .friendship-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+      gap: 1.25rem;
+      margin-top: 2rem;
+    }
+    .friend-card {
+      background: white;
+      border-radius: 20px;
+      padding: 1.8rem 1.6rem;
+      box-shadow: 0 4px 24px rgba(180,130,200,0.1);
+      border-left: 4px solid var(--rose);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .friend-card:nth-child(2) { border-left-color: var(--lavender); }
+    .friend-card:nth-child(3) { border-left-color: #f9dba0; }
+    .friend-card:nth-child(4) { border-left-color: #b8e0f9; }
+    .friend-card:hover { transform: translateY(-5px); box-shadow: 0 12px 36px rgba(180,130,200,0.18); }
+    .friend-card-icon { font-size: 2rem; margin-bottom: 0.7rem; }
+    .friend-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      color: #7a4a7a;
+      margin-bottom: 0.5rem;
+    }
+    .friend-card p { font-size: 0.92rem; line-height: 1.75; color: #9a7090; }
+
     /* ---- FOOTER ---- */
     footer {
       position: relative;
@@ -424,42 +452,42 @@
 
   <div class="donation-grid">
     <div class="donation-card">
-      <img src="IMG1.jpg" alt="Donation moment 1" />
+      <img src="IMG1.jpeg" alt="Donation moment 1" />
       <div class="donation-card-body">
         <div class="donation-card-icon">🍱</div>
         <p>Every child deserves a full belly and a bright future — this is your birthday, making that happen.</p>
       </div>
     </div>
     <div class="donation-card">
-      <img src="IMG2.jpg" alt="Donation moment 2" />
+      <img src="IMG2.jpeg" alt="Donation moment 2" />
       <div class="donation-card-body">
         <div class="donation-card-icon">🌟</div>
         <p>These little stars shone brighter today — and it's all because of you, Asma.</p>
       </div>
     </div>
     <div class="donation-card">
-      <img src="IMG3.jpg" alt="Donation moment 3" />
+      <img src="IMG3.jpeg" alt="Donation moment 3" />
       <div class="donation-card-body">
         <div class="donation-card-icon">💜</div>
         <p>Kindness ripples outward. What you inspired today will echo in their lives forever.</p>
       </div>
     </div>
     <div class="donation-card">
-      <img src="IMG4.jpg" alt="Donation moment 4" />
+      <img src="IMG4.jpeg" alt="Donation moment 4" />
       <div class="donation-card-body">
         <div class="donation-card-icon">🎁</div>
         <p>A gift that doesn't unwrap — it unfolds over a lifetime, quietly changing everything.</p>
       </div>
     </div>
     <div class="donation-card">
-      <img src="IMG5.jpg" alt="Donation moment 5" />
+      <img src="IMG5.jpeg" alt="Donation moment 5" />
       <div class="donation-card-body">
         <div class="donation-card-icon">☀️</div>
         <p>You didn't just turn a year older — you made the world a little warmer today.</p>
       </div>
     </div>
     <div class="donation-card">
-      <img src="IMG6.jpg" alt="Donation moment 6" />
+      <img src="IMG6.jpeg" alt="Donation moment 6" />
       <div class="donation-card-body">
         <div class="donation-card-icon">🌸</div>
         <p>This is what celebrating you looks like — love, multiplied.</p>
@@ -484,6 +512,37 @@
 
 <div class="divider reveal">✦ 💜 ✦ 🌟 ✦ 💜 ✦</div>
 
+<!-- FRIENDSHIP SECTION -->
+<section class="section reveal">
+  <h2 class="section-title">What you mean to Pratik 🌙</h2>
+  <p class="section-sub">Some things are hard to say out loud — so here they are</p>
+
+  <div class="friendship-cards">
+    <div class="friend-card">
+      <div class="friend-card-icon">🫂</div>
+      <h3>The kind of friend that's rare</h3>
+      <p>You show up. Not just when things are good — but when things are hard, messy, and real. That kind of loyalty is genuinely one in a million, Asma.</p>
+    </div>
+    <div class="friend-card">
+      <div class="friend-card-icon">🌟</div>
+      <h3>You make Pratik better</h3>
+      <p>Having you around isn't just a blessing — it's been quietly, steadily life-changing. The way you carry yourself, the way you care, it rubs off on people. In the best way.</p>
+    </div>
+    <div class="friend-card">
+      <div class="friend-card-icon">💬</div>
+      <h3>The conversations no one else gets</h3>
+      <p>There are things Pratik can talk to you about that wouldn't make sense to anyone else. That kind of understanding is a gift — and it's yours to give, effortlessly.</p>
+    </div>
+    <div class="friend-card">
+      <div class="friend-card-icon">💜</div>
+      <h3>Lucky doesn't cover it</h3>
+      <p>Pratik knows — and on days when it's hard to say it out loud, this page says it instead: having you as a friend is one of the best things that ever happened. Thank you for being you. 🌸</p>
+    </div>
+  </div>
+</section>
+
+<div class="divider reveal">🌸 ✦ 🌙 ✦ ⭐ ✦ 🌙 ✦ 🌸</div>
+
 <!-- BIRTHDAY LETTER -->
 <section class="section reveal">
   <h2 class="section-title">A little note for you 🌙</h2>
@@ -501,11 +560,16 @@
       to the universe. And the universe, I'm sure, smiles back at you.
     </p>
     <p>
+      Pratik wants you to know — you are the kind of friend people write about in journals
+      and thank in prayers they don't say out loud. Being in your life is a privilege
+      that doesn't go unnoticed, even when it goes unsaid.
+    </p>
+    <p>
       May this year bring you everything you quietly deserve — peace, love, magic in
       the ordinary, and the certainty that you are so deeply, irreplaceably valued.
       You are someone rare. Never forget that. 🌸
     </p>
-    <div class="letter-sig">With all the stars in the sky — Happy Birthday 💜</div>
+    <div class="letter-sig">With all the stars in the sky — Happy Birthday, Asma 💜</div>
   </div>
 </section>
 
